@@ -34,10 +34,13 @@ export class TopicComponent implements OnInit {
   }
 
   public save() {
-
     const service = (this.form.value._id) ? this.topicsService.updateTopic(this.form.value._id, this.form.value) :
       this.topicsService.createTopic(this.form.value);
 
     service.subscribe(() => this.router.navigate(['/topics']));
+  }
+
+  public delete() {
+    this.topicsService.deleteTopic(this.form.value._id).subscribe(() => this.router.navigate(['/topics']));
   }
 }

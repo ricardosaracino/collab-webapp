@@ -9,3 +9,11 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+
+.app-button-container > a,
+.app-button-container > button {
+  margin-top: 1em !important;
+  margin-right: 1em !important;
+  min-width: 85px;
+}

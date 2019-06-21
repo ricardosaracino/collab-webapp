@@ -21,6 +21,10 @@ export class TopicsService {
     return this.http.post<TopicInterface>(`${this.apiUrl}/topics/${id}`, topic);
   }
 
+  public deleteTopic(id: string): Observable<boolean> {
+    return this.http.delete<boolean>(`${this.apiUrl}/topics/${id}`);
+  }
+
   public findAllTopics(): Observable<TopicInterface[]> {
     return this.http.get<TopicInterface[]>(`${this.apiUrl}/topics`);
   }
