@@ -1,0 +1,13 @@
+<h1>Topic</h1>
+
+<form [formGroup]="form" (ngSubmit)="save()" class="container">
+  <mat-form-field appearance="standard">
+    <input matInput placeholder="Topic Title" required [formControl]="form.get('title')">
+  </mat-form-field>
+
+  <mat-form-field appearance="standard">
+    <input matInput placeholder="Topic Description" required [formControl]="form.get('description')">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary">Save</button>
+</form>
