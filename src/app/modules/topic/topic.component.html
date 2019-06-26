@@ -1,16 +1,16 @@
 <h1>Topic</h1>
 
-<form [formGroup]="form" (ngSubmit)="save()" class="container">
+<form (ngSubmit)="save()" [formGroup]="form" class="container">
   <mat-form-field appearance="standard">
-    <input matInput placeholder="Topic Title" required [formControl]="form.get('title')">
+    <input [formControl]="form.get('title')" matInput placeholder="Topic Title" required>
   </mat-form-field>
 
   <mat-form-field appearance="standard">
-    <input matInput placeholder="Topic Description" required [formControl]="form.get('description')">
+    <input [formControl]="form.get('description')" matInput placeholder="Topic Description" required>
   </mat-form-field>
 
   <div class="app-button-container">
-    <button mat-raised-button color="primary">Save</button>
-    <button mat-raised-button type='button' (click)="delete()" color="primary">Delete</button>
+    <button color="primary" mat-raised-button>Save</button>
+    <button (click)="delete()" color="primary" mat-raised-button type='button'>Delete</button>
   </div>
 </form>

@@ -1,0 +1,25 @@
+<div>
+
+  <div class="comment-date">user name • {{comment.createdAt|date:'short'}}</div>
+
+  <div class="comment-text">{{comment.text}}</div>
+
+  <ng-container *ngIf="reply">
+
+    <button (click)="showReply = !showReply" [attr.aria-label]="'reply '+comment.text" color="accent" mat-icon-button>
+      <mat-icon>reply</mat-icon>
+    </button>
+
+    <div *ngIf="showReply">
+      <mat-form-field appearance="outline">
+    <textarea
+      [(ngModel)]="newComment.text"
+      [cdkAutosizeMinRows]="2"
+      [cdkTextareaAutosize]="true"
+      matInput
+      placeholder="Join the discussion..."></textarea>
+        <button (click)="post()" color="primary" mat-flat-button style="width: 122px; margin-top: 16px">Post</button>
+      </mat-form-field>
+    </div>
+  </ng-container>
+</div>

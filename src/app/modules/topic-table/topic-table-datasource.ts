@@ -15,10 +15,9 @@ export interface TopicTableItem extends TopicInterface {
  */
 export class TopicTableDataSource extends DataSource<TopicTableItem> {
 
+  public dataSubject = new BehaviorSubject<TopicTableItem[]>([]);
   private sort: MatSort;
   private paginator: MatPaginator;
-
-  public dataSubject = new BehaviorSubject<TopicTableItem[]>([]);
 
   constructor(private readonly topicsService: TopicsService) {
     super();

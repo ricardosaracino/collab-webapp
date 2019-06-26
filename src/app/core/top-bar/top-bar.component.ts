@@ -2,6 +2,7 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Component} from '@angular/core';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {AuthService} from '../auth.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -15,7 +16,7 @@ export class TopBarComponent {
       map(result => result.matches),
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {
+  constructor(public readonly authService: AuthService, private breakpointObserver: BreakpointObserver) {
   }
 
 }

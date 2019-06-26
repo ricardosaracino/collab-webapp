@@ -1,0 +1,19 @@
+<h1>{{topic?.title}} -
+  <small>{{topic?.description}}</small>
+</h1>
+
+<div style="max-width: 750px">
+  <div>
+    <mat-form-field appearance="outline">
+    <textarea
+      [(ngModel)]="newComment.text"
+      [cdkAutosizeMinRows]="2"
+      [cdkTextareaAutosize]="true"
+      matInput
+      placeholder="Join the discussion..."></textarea>
+      <button (click)="post()" color="primary" mat-flat-button style="width: 122px; margin-top: 16px">Post</button>
+    </mat-form-field>
+  </div>
+
+  <app-comments [comments]="topicComments" [depth]="0"></app-comments>
+</div>

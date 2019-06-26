@@ -1,0 +1,12 @@
+.comment-date {
+  font-size: .75em;
+  padding-bottom: 3px;
+}
+
+.comment-text {
+  white-space: pre-wrap;
+}
+
+.mat-form-field {
+  width: 100%;
+}

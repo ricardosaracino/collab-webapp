@@ -1,0 +1,20 @@
+<div *ngFor="let comment of comments;" style="position: relative;">
+
+  <div *ngIf="comment.comments.length" style="top: -15px; right: 0; position: absolute">
+    <button (click)="comment.minimized = !comment.minimized" [attr.aria-label]="'minimize '+comment.text" color="accent"
+            mat-icon-button>
+      <mat-icon *ngIf="!comment.minimized">arrow_drop_down</mat-icon>
+      <mat-icon *ngIf="comment.minimized">arrow_drop_up</mat-icon>
+    </button>
+  </div>
+
+  <div class="comments">
+
+    <app-comment [comment]="comment" [reply]="depth < 4"></app-comment>
+
+    <div [ngStyle]="{'display':(comment.minimized ? 'none' : 'block')}" style="padding-left: 16px">
+      <app-comments *ngIf="comment.comments" [comments]="comment.comments" [depth]="depth + 1"></app-comments>
+    </div>
+  </div>
+
+</div>

@@ -1,8 +1,9 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+  <mat-sidenav #drawer [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
                [mode]="(isHandset$ | async) ? 'over' : 'side'"
-               [opened]="(isHandset$ | async) === false">
+               [opened]="(isHandset$ | async) === false"
+               class="sidenav"
+               fixedInViewport>
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="topic">New Topic</a>
@@ -12,14 +13,17 @@
   <mat-sidenav-content>
     <mat-toolbar color="primary">
       <button
-        type="button"
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
         aria-label="Toggle sidenav"
         mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
+        type="button">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>Collaboration</span>
+      <span class="spacer"></span>
+      {{authService.user?.name}}
+      <a mat-button href="http://localhost:3000/auth/login">Login</a>
     </mat-toolbar>
     <div class="main-container">
       <router-outlet></router-outlet>

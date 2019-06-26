@@ -16,6 +16,10 @@
   z-index: 1;
 }
 
+.spacer {
+  flex: 1 1 auto;
+}
+
 .main-container {
   margin: 0 30px;
 }
