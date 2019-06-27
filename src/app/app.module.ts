@@ -1,5 +1,5 @@
 import {LayoutModule} from '@angular/cdk/layout';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
@@ -9,6 +9,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginFailureComponent} from './core/login-failure/login-failure.component';
 import {LoginSuccessComponent} from './core/login-success/login-success.component';
+import {TokenInterceptor} from './core/token.interceptor';
 import {TopBarComponent} from './core/top-bar/top-bar.component';
 import {MaterialModule} from './material.modules';
 import {CommentComponent} from './modules/comment/comment.component';
@@ -40,7 +41,11 @@ import {TopicComponent} from './modules/topic/topic.component';
 
     MaterialModule,
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true,
+  }],
   bootstrap: [AppComponent],
 })
 export class AppModule {

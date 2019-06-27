@@ -9,17 +9,13 @@ export class AuthService {
   public user;
 
   constructor() {
-
-    const token = localStorage.getItem('token');
-
-    if (token) {
-      this.user = decode(token);
-    }
+    this.isAuthenticated();
   }
 
-  public setToken(token) {
+  public setToken(token: string) {
     localStorage.setItem('token', token);
-    this.user = decode(token);
+
+    this.isAuthenticated();
   }
 
   public getToken(): string {
@@ -27,10 +23,32 @@ export class AuthService {
   }
 
   public isAuthenticated(): boolean {
-    // get the token
+
     const token = this.getToken();
-    // return a boolean reflecting
-    // whether or not the token is expired
-    return true;//okenNotExpired(token);
+
+    console.log('isAuthenticated', token);
+
+    if (token) {
+
+      try {
+        const decodedToken = decode(token);
+
+        console.log('isAuthenticated', decodedToken);
+
+        if (Date.now() >= decodedToken.exp) {
+          this.user = null;
+          localStorage.removeItem('token');
+          return false;
+        }
+
+        this.user = decodedToken;
+
+      } catch (e) {
+        console.error(e);
+        return false;
+      }
+    }
+
+    return true;
   }
 }
