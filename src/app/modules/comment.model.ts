@@ -9,5 +9,7 @@ export class CommentModel {
 
   createdAt: Date = new Date();
 
+  createdBy: { name: string };
+
   comments: CommentModel[] = [];
 }

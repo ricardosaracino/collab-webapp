@@ -1,6 +1,6 @@
 <div>
 
-  <div class="comment-date">user name • {{comment.createdAt|date:'short'}}</div>
+  <div class="comment-date">{{comment.createdBy.name}} • {{comment.createdAt|date:'short'}}</div>
 
   <div class="comment-text">{{comment.text}}</div>
 

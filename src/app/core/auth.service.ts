@@ -35,9 +35,11 @@ export class AuthService {
 
         console.log('isAuthenticated', decodedToken);
 
-        if (Date.now() >= decodedToken.exp) {
+        if (Date.now() > decodedToken.exp * 1000) {
           this.user = null;
           localStorage.removeItem('token');
+
+
           return false;
         }
 
