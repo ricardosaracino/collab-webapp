@@ -39,8 +39,12 @@ export class TopicsService {
     return this.http.post<CommentModel>(`${this.apiUrl}/topics/${topicId}/comments`, comment);
   }
 
-  public createCommentReply(topicId: string, parentId: string, comment: CommentModel): Observable<CommentModel> {
-    return this.http.post<CommentModel>(`${this.apiUrl}/topics/${topicId}/comments/${parentId}`, comment);
+  public updateComment(topicId: string, commentId: string, comment: CommentModel): Observable<CommentModel> {
+    return this.http.post<CommentModel>(`${this.apiUrl}/topics/${topicId}/comments/${commentId}`, comment);
+  }
+
+  public createCommentReply(topicId: string, commentId: string, comment: CommentModel): Observable<CommentModel> {
+    return this.http.post<CommentModel>(`${this.apiUrl}/topics/${topicId}/comments/${commentId}/comments`, comment);
   }
 
   public findAllComments(topicId: string): Observable<CommentModel[]> {

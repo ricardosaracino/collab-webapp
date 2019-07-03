@@ -19,13 +19,9 @@ export class LoginSuccessComponent {
 
     route.params.pipe(map(p => p.token)).subscribe(token => {
 
-      console.log('success', token);
-
       authService.setToken(token);
 
       this.route.queryParams.pipe(map(p => p.redirect)).subscribe(redirect => {
-
-        console.log(redirect);
 
         router.navigate([redirect ? redirect : '']);
       })

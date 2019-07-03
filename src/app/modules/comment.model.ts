@@ -12,4 +12,6 @@ export class CommentModel {
   createdBy: { name: string };
 
   comments: CommentModel[] = [];
+
+  updateHistory: { text: string, updatedAt: Date }[] = [];
 }

@@ -18,22 +18,29 @@ export class CommentComponent {
   public newComment = new CommentModel();
 
   public showReply: boolean = false;
+  public showEdit: boolean = false;
+  public showHistory: boolean = false;
 
   constructor(private readonly topicsService: TopicsService) {
   }
 
-  public post() {
+  public postReply() {
     if (this.newComment.text) {
-
-      console.log(this.comment);
-
-      console.log(this.newComment);
-
       this.topicsService.createCommentReply(this.comment.topic_id, this.comment._id, this.newComment).subscribe((comment: CommentModel) => {
-        this.comment.comments = []; // todo
         this.comment.comments.unshift(comment);
         this.newComment = new CommentModel();
         this.showReply = false;
+      });
+    }
+  }
+
+  public postUpdate() {
+    if (this.comment.text) {
+      this.topicsService.updateComment(this.comment.topic_id, this.comment._id, this.comment).subscribe((comment: CommentModel) => {
+        const comments = [...this.comment.comments];
+        Object.assign(this.comment, comment); // keep ref
+        this.comment.comments = comments;
+        this.showEdit = false;
       });
     }
   }

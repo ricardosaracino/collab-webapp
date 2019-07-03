@@ -3,7 +3,7 @@
 </h1>
 
 <div style="max-width: 750px">
-  <div>
+  <mat-card style="margin: 5px">
     <mat-form-field appearance="outline">
     <textarea
       [(ngModel)]="newComment.text"
@@ -13,7 +13,7 @@
       placeholder="Join the discussion..."></textarea>
       <button (click)="post()" color="primary" mat-flat-button style="width: 122px; margin-top: 16px">Post</button>
     </mat-form-field>
-  </div>
+  </mat-card>
 
   <app-comments [comments]="topicComments" [depth]="0"></app-comments>
 </div>

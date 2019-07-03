@@ -53,10 +53,7 @@ export class TokenInterceptor implements HttpInterceptor {
             console.log('unathed');
 
             this.authService.isAuthenticated();
-
-
           }
-
         }
 
         return of(error);

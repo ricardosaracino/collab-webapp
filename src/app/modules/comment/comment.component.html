@@ -1,25 +1,60 @@
-<div>
+<mat-card style="margin: 5px">
 
-  <div class="comment-date">{{comment.createdBy.name}} • {{comment.createdAt|date:'short'}}</div>
+  <div class="comment-date">
+    {{comment.createdBy.name}} • {{comment.createdAt|date:'short'}}
 
-  <div class="comment-text">{{comment.text}}</div>
+    <span *ngIf="comment.updateHistory.length" style="position: relative;">
+
+     <span (click)="showHistory = !showHistory"
+           style="cursor: pointer">• edited</span>
+
+      <mat-card *ngIf="showHistory" class="mat-elevation-z5"
+                style="position: absolute; display: inline-block; width: 500px; z-index: 10001; ">
+        <mat-card-content>
+          <div *ngFor="let edit of comment.updateHistory; last as isLast">
+            <div style="padding: 10px 0">
+              <div class="comment-date">{{edit.updatedAt|date:'short'}}</div>
+              <div style="white-space: pre-line">{{edit.text}}</div>
+            </div>
+            <mat-divider *ngIf="!isLast"></mat-divider>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </span>
+  </div>
+
+  <div *ngIf="!showEdit" class="comment-text">{{comment.text}}</div>
+
+  <mat-form-field *ngIf="showEdit" appearance="outline">
+    <textarea
+      [(ngModel)]="comment.text"
+      [cdkAutosizeMinRows]="2"
+      [cdkTextareaAutosize]="true"
+      matInput></textarea>
+    <button (click)="postUpdate()" color="primary" mat-flat-button style="width: 122px; margin-top: 16px">Save</button>
+  </mat-form-field>
 
   <ng-container *ngIf="reply">
-
     <button (click)="showReply = !showReply" [attr.aria-label]="'reply '+comment.text" color="accent" mat-icon-button>
       <mat-icon>reply</mat-icon>
     </button>
-
-    <div *ngIf="showReply">
-      <mat-form-field appearance="outline">
-    <textarea
-      [(ngModel)]="newComment.text"
-      [cdkAutosizeMinRows]="2"
-      [cdkTextareaAutosize]="true"
-      matInput
-      placeholder="Join the discussion..."></textarea>
-        <button (click)="post()" color="primary" mat-flat-button style="width: 122px; margin-top: 16px">Post</button>
-      </mat-form-field>
-    </div>
+    <button (click)="showEdit = !showEdit" [attr.aria-label]="'showEdit '+comment.text" color="accent" mat-icon-button>
+      <mat-icon>edit</mat-icon>
+    </button>
   </ng-container>
+</mat-card>
+
+<div *ngIf="showReply" style=";padding-left: 20px">
+  <mat-card style="margin: 5px">
+    <mat-form-field appearance="outline">
+        <textarea
+          [(ngModel)]="newComment.text"
+          [cdkAutosizeMinRows]="2"
+          [cdkTextareaAutosize]="true"
+          matInput
+          placeholder="Join the discussion..."></textarea>
+      <button (click)="postReply()" color="primary" mat-flat-button style="width: 122px; margin-top: 16px">Post
+      </button>
+    </mat-form-field>
+  </mat-card>
 </div>
