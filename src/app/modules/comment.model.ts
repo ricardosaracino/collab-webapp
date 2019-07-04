@@ -3,13 +3,11 @@ export class CommentModel {
 
   topic_id: string = null;
 
-  parent_id: string = null;
-
   text: string = ''; // must be defaulted for form builder
 
   createdAt: Date = new Date();
 
-  createdBy: { name: string };
+  createdBy: { id: string, name: string };
 
   comments: CommentModel[] = [];
 

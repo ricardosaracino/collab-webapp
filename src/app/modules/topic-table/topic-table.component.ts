@@ -18,7 +18,7 @@ export class TopicTableComponent implements AfterViewInit, OnInit {
   dataSource: TopicTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['title', 'description', 'createdAt'];
+  displayedColumns = ['title', 'description', 'createdAt', 'controls'];
 
   constructor(private readonly topicsService: TopicsService) {
   }

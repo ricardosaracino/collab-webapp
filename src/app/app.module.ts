@@ -7,8 +7,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
+import {AuthGuard} from './core/auth-guard.service';
+import {AuthService} from './core/auth.service';
 import {LoginFailureComponent} from './core/login-failure/login-failure.component';
 import {LoginSuccessComponent} from './core/login-success/login-success.component';
+import {LoginComponent} from './core/login/login.component';
 import {TokenInterceptor} from './core/token.interceptor';
 import {TopBarComponent} from './core/top-bar/top-bar.component';
 import {MaterialModule} from './material.modules';
@@ -29,6 +32,7 @@ import {TopicComponent} from './modules/topic/topic.component';
     CommentComponent,
     LoginSuccessComponent,
     LoginFailureComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,11 +45,14 @@ import {TopicComponent} from './modules/topic/topic.component';
 
     MaterialModule,
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptor,
-    multi: true,
-  }],
+  providers: [
+    AuthGuard,
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    }],
   bootstrap: [AppComponent],
 })
 export class AppModule {

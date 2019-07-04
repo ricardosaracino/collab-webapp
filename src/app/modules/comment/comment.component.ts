@@ -1,4 +1,5 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {AuthService} from '../../core/auth.service';
 import {CommentModel} from '../comment.model';
 import {TopicsService} from '../topics.service';
 
@@ -7,7 +8,7 @@ import {TopicsService} from '../topics.service';
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.css'],
 })
-export class CommentComponent {
+export class CommentComponent implements OnInit {
 
   @Input()
   public comment: CommentModel;
@@ -21,10 +22,17 @@ export class CommentComponent {
   public showEdit: boolean = false;
   public showHistory: boolean = false;
 
-  constructor(private readonly topicsService: TopicsService) {
+  public canEdit: boolean = false;
+
+  constructor(public readonly authService: AuthService, private readonly topicsService: TopicsService) {
   }
 
-  public postReply() {
+  public ngOnInit(): void {
+
+    this.canEdit = this.authService.user._id == this.comment.createdBy.id;
+  }
+
+  public postReply(): void {
     if (this.newComment.text) {
       this.topicsService.createCommentReply(this.comment.topic_id, this.comment._id, this.newComment).subscribe((comment: CommentModel) => {
         this.comment.comments.unshift(comment);
@@ -34,7 +42,7 @@ export class CommentComponent {
     }
   }
 
-  public postUpdate() {
+  public postUpdate(): void {
     if (this.comment.text) {
       this.topicsService.updateComment(this.comment.topic_id, this.comment._id, this.comment).subscribe((comment: CommentModel) => {
         const comments = [...this.comment.comments];

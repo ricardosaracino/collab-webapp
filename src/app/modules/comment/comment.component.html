@@ -38,7 +38,8 @@
     <button (click)="showReply = !showReply" [attr.aria-label]="'reply '+comment.text" color="accent" mat-icon-button>
       <mat-icon>reply</mat-icon>
     </button>
-    <button (click)="showEdit = !showEdit" [attr.aria-label]="'showEdit '+comment.text" color="accent" mat-icon-button>
+    <button *ngIf="canEdit" (click)="showEdit = !showEdit" [attr.aria-label]="'showEdit '+comment.text" color="accent"
+            mat-icon-button>
       <mat-icon>edit</mat-icon>
     </button>
   </ng-container>

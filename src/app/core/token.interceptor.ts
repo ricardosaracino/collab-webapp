@@ -33,10 +33,7 @@ export class TokenInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(tap((event: HttpEvent<any>) => {
 
         if (event instanceof HttpResponse) {
-
-          const httpResponse = event as HttpResponse<any>;
-
-          console.log(httpResponse.headers.keys());
+          //const httpResponse = event as HttpResponse<any>;
         }
 
         return event;

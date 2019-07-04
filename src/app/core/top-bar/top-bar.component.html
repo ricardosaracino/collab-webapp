@@ -23,7 +23,8 @@
       <span>Collaboration</span>
       <span class="spacer"></span>
       {{authService.user?.name}}
-      <a mat-button href="http://localhost:3000/auth/login">Login</a>
+      <a *ngIf="!authService.isAuthenticated()" mat-button href="http://localhost:3000/auth/login">Login</a>
+      <button *ngIf="authService.isAuthenticated()" mat-button (click)="authService.logout()">Logout</button>
     </mat-toolbar>
     <div class="main-container">
       <router-outlet></router-outlet>
