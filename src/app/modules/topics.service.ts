@@ -47,6 +47,10 @@ export class TopicsService {
     return this.http.post<CommentModel>(`${this.apiUrl}/topics/${topicId}/comments/${commentId}/comments`, comment);
   }
 
+  public voteComment(topicId: string, commentId: string, vote: '+1' | '-1'): Observable<CommentModel> {
+    return this.http.post<CommentModel>(`${this.apiUrl}/topics/${topicId}/comments/${commentId}/vote`, {vote});
+  }
+
   public findAllComments(topicId: string): Observable<CommentModel[]> {
     return this.http.get<CommentModel[]>(`${this.apiUrl}/topics/${topicId}/comments`);
   }

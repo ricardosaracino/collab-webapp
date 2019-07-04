@@ -35,17 +35,29 @@
   </mat-form-field>
 
   <ng-container *ngIf="reply">
+
+    <small *ngIf="comment.upVotes.length">{{comment.upVotes.length}}</small>
+
+    <button (click)="this.vote('+1')" [attr.aria-label]="'up vote '+comment.text" color="accent" mat-icon-button>
+      <mat-icon>expand_less</mat-icon>
+    </button>
+    |
+    <button (click)="this.vote('-1')" [attr.aria-label]="'down vote '+comment.text" color="accent" mat-icon-button>
+      <mat-icon>expand_more</mat-icon>
+    </button>
+    •
     <button (click)="showReply = !showReply" [attr.aria-label]="'reply '+comment.text" color="accent" mat-icon-button>
       <mat-icon>reply</mat-icon>
     </button>
-    <button *ngIf="canEdit" (click)="showEdit = !showEdit" [attr.aria-label]="'showEdit '+comment.text" color="accent"
+    •
+    <button *ngIf="canEdit" (click)="showEdit = !showEdit" [attr.aria-label]="'edit '+comment.text" color="accent"
             mat-icon-button>
       <mat-icon>edit</mat-icon>
     </button>
   </ng-container>
 </mat-card>
 
-<div *ngIf="showReply" style=";padding-left: 20px">
+<div *ngIf="showReply" style="padding-left: 20px">
   <mat-card style="margin: 5px">
     <mat-form-field appearance="outline">
         <textarea

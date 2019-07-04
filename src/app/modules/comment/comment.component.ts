@@ -32,6 +32,15 @@ export class CommentComponent implements OnInit {
     this.canEdit = this.authService.user._id == this.comment.createdBy.id;
   }
 
+  public vote(vote: '+1' | '-1'): void {
+    this.topicsService.voteComment(this.comment.topic_id, this.comment._id, vote).subscribe((comment: CommentModel) => {
+      const comments = [...this.comment.comments];
+      Object.assign(this.comment, comment); // keep ref
+      this.comment.comments = comments;
+    });
+  }
+
+  c
   public postReply(): void {
     if (this.newComment.text) {
       this.topicsService.createCommentReply(this.comment.topic_id, this.comment._id, this.newComment).subscribe((comment: CommentModel) => {

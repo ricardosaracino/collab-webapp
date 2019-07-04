@@ -12,4 +12,7 @@ export class CommentModel {
   comments: CommentModel[] = [];
 
   updateHistory: { text: string, updatedAt: Date }[] = [];
+
+
+  upVotes: [{ id: string, name: string }]
 }
