@@ -2,10 +2,10 @@ import {DataSource} from '@angular/cdk/collections';
 import {MatPaginator, MatSort} from '@angular/material';
 import {BehaviorSubject, Observable, of} from 'rxjs';
 import {catchError} from 'rxjs/operators';
-import {TopicInterface} from '../topic.interface';
+import {TopicModel} from '../topic.model';
 import {TopicsService} from '../topics.service';
 
-export interface TopicTableItem extends TopicInterface {
+export class TopicTableItem extends TopicModel {
 }
 
 /**
@@ -25,7 +25,6 @@ export class TopicTableDataSource extends DataSource<TopicTableItem> {
     this.topicsService.findAllTopics().pipe(
       catchError(() => of([])),
     ).subscribe(data => this.dataSubject.next(data));
-
   }
 
   public setSort(sort: MatSort) {

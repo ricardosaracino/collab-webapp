@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTable} from '@angular/material';
-import {TopicInterface} from '../topic.interface';
+import {TopicModel} from '../topic.model';
 import {TopicsService} from '../topics.service';
 import {TopicTableDataSource} from './topic-table-datasource';
 
@@ -13,7 +13,7 @@ export class TopicTableComponent implements AfterViewInit, OnInit {
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
-  @ViewChild(MatTable, {static: false}) table: MatTable<TopicInterface>;
+  @ViewChild(MatTable, {static: false}) table: MatTable<TopicModel>;
 
   dataSource: TopicTableDataSource;
 

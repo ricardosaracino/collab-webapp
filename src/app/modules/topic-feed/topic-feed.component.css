@@ -1,0 +1,34 @@
+
+.card-title {
+  height: 50px;
+  max-height: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.card-title:hover {
+  text-decoration: underline !important;
+}
+
+.card-content {
+  height: 200px;
+  max-height: 200px;
+  padding-right: 5px;
+  overflow-y: auto;
+  white-space: pre-line;
+}
+
+.card-content::-webkit-scrollbar {
+  width: 5px;
+}
+
+.card-content::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.card-content::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}

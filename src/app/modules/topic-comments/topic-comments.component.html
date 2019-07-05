@@ -1,19 +1,45 @@
-<h1>{{topic?.title}} -
-  <small>{{topic?.description}}</small>
-</h1>
+<h1>{{topic?.title}}</h1>
 
 <div style="max-width: 750px">
-  <mat-card style="margin: 5px">
-    <mat-form-field appearance="outline">
+
+  <div class="author">
+    {{topic?.createdBy.name}} • {{topic?.createdAt|date:'short'}}
+  </div>
+
+  <p style="white-space: pre-line">{{topic?.description}}</p>
+
+  <div>
+    <small *ngIf="topic?.upVotes.length">{{topic?.upVotes.length}}</small>
+
+    <button (click)="vote('+1')" [attr.aria-label]="'up vote '+topic?.title" color="primary" mat-icon-button>
+      <mat-icon>expand_less</mat-icon>
+    </button>
+    |
+    <button (click)="vote('-1')" [attr.aria-label]="'down vote '+topic?.title" color="primary" mat-icon-button>
+      <mat-icon>expand_more</mat-icon>
+    </button>
+    •
+    <button (click)="showReply = !showReply" [attr.aria-label]="'reply '+topic?.title"
+            [color]="showReply ? 'accent' : 'primary'" mat-icon-button>
+      <mat-icon>reply</mat-icon>
+    </button>
+  </div>
+
+
+  <div *ngIf="showReply">
+    <mat-card style="margin: 5px">
+      <mat-form-field appearance="outline">
     <textarea
       [(ngModel)]="newComment.text"
       [cdkAutosizeMinRows]="2"
       [cdkTextareaAutosize]="true"
       matInput
       placeholder="Join the discussion..."></textarea>
-      <button (click)="post()" color="primary" mat-flat-button style="width: 122px; margin-top: 16px">Post</button>
-    </mat-form-field>
-  </mat-card>
+        <button (click)="post()" color="primary" mat-flat-button style="width: 122px; margin-top: 16px">Post</button>
+      </mat-form-field>
+    </mat-card>
+  </div>
 
   <app-comments [comments]="topicComments" [depth]="0"></app-comments>
+
 </div>

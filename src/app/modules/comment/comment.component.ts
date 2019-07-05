@@ -40,7 +40,7 @@ export class CommentComponent implements OnInit {
     });
   }
 
-  c
+
   public postReply(): void {
     if (this.newComment.text) {
       this.topicsService.createCommentReply(this.comment.topic_id, this.comment._id, this.newComment).subscribe((comment: CommentModel) => {

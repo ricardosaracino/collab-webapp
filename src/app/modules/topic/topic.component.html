@@ -2,11 +2,16 @@
 
 <form (ngSubmit)="save()" [formGroup]="form" class="container">
   <mat-form-field appearance="standard">
-    <input [formControl]="form.get('title')" matInput placeholder="Topic Title" required>
+    <input [formControl]="form.get('title')" matInput placeholder="Title" required>
   </mat-form-field>
 
-  <mat-form-field appearance="standard">
-    <input [formControl]="form.get('description')" matInput placeholder="Topic Description" required>
+  <mat-form-field appearance="outline">
+    <textarea
+      placeholder="Describe your topic... "
+      [formControl]="form.get('description')"
+      [cdkAutosizeMinRows]="2"
+      [cdkTextareaAutosize]="true"
+      matInput></textarea>
   </mat-form-field>
 
   <div class="app-button-container">

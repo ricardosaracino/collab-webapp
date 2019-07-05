@@ -16,6 +16,8 @@ export class TopicCommentsComponent implements OnInit {
   public topicComments: CommentModel[];
   public newComment = new CommentModel;
 
+  public showReply = false;
+
   constructor(private readonly topicsService: TopicsService,
               private readonly route: ActivatedRoute) {
   }
@@ -33,11 +35,16 @@ export class TopicCommentsComponent implements OnInit {
     });
   }
 
+  public vote(vote: '+1' | '-1'): void {
+
+  }
+
   public post() {
     if (this.newComment.text) {
       this.topicsService.createComment(this.topic._id, this.newComment).subscribe((comment: CommentModel) => {
         this.topicComments.unshift(comment);
         this.newComment = new CommentModel();
+        this.showReply = false;
       });
     }
   }

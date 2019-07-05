@@ -3,6 +3,11 @@
   flex-direction: column;
 }
 
+.author {
+  font-size: .75em;
+  padding-bottom: 7px;
+}
+
 .mat-form-field {
   width: 100%;
 }

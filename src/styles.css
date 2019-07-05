@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import '@angular/material/prebuilt-themes/pink-bluegrey.css';
+/*@import '@angular/material/prebuilt-themes/pink-bluegrey.css';*/
 
 html, body {
   height: 100%;
@@ -10,6 +10,9 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+h1 {
+  margin-top: 15px;
+}
 
 .app-button-container > a,
 .app-button-container > button {
@@ -17,11 +20,3 @@ body {
   margin-right: 1em !important;
   min-width: 85px;
 }
-
-
-/*
-
-.mat-form-field-wrapper {
-  padding-bottom: 0 !important;
-}
-*/

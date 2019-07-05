@@ -3,6 +3,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
 import {NgModule} from '@angular/core';
+import {MatGridListModule} from '@angular/material';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatButtonModule} from '@angular/material/button';
@@ -46,6 +47,7 @@ const MATERIAL_MODULES = [
   MatDialogModule,
   MatDividerModule,
   MatExpansionModule,
+  MatGridListModule,
   MatIconModule,
   MatInputModule,
   MatListModule,

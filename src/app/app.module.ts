@@ -1,6 +1,7 @@
 import {LayoutModule} from '@angular/cdk/layout';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
+import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -18,6 +19,7 @@ import {MaterialModule} from './material.modules';
 import {CommentComponent} from './modules/comment/comment.component';
 import {CommentsComponent} from './modules/comments/comments.component';
 import {TopicCommentsComponent} from './modules/topic-comments/topic-comments.component';
+import {TopicFeedComponent} from './modules/topic-feed/topic-feed.component';
 import {TopicTableComponent} from './modules/topic-table/topic-table.component';
 import {TopicComponent} from './modules/topic/topic.component';
 
@@ -33,6 +35,7 @@ import {TopicComponent} from './modules/topic/topic.component';
     LoginSuccessComponent,
     LoginFailureComponent,
     LoginComponent,
+    TopicFeedComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +43,7 @@ import {TopicComponent} from './modules/topic/topic.component';
     BrowserAnimationsModule,
     LayoutModule,
     HttpClientModule,
+    FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
 

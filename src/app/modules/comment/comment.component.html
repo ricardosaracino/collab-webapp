@@ -1,6 +1,6 @@
 <mat-card style="margin: 5px">
 
-  <div class="comment-date">
+  <div class="author">
     {{comment.createdBy.name}} • {{comment.createdAt|date:'short'}}
 
     <span *ngIf="comment.updateHistory.length" style="position: relative;">
@@ -38,19 +38,21 @@
 
     <small *ngIf="comment.upVotes.length">{{comment.upVotes.length}}</small>
 
-    <button (click)="this.vote('+1')" [attr.aria-label]="'up vote '+comment.text" color="accent" mat-icon-button>
+    <button (click)="vote('+1')" [attr.aria-label]="'up vote '+comment.text" color="primary" mat-icon-button>
       <mat-icon>expand_less</mat-icon>
     </button>
     |
-    <button (click)="this.vote('-1')" [attr.aria-label]="'down vote '+comment.text" color="accent" mat-icon-button>
+    <button (click)="vote('-1')" [attr.aria-label]="'down vote '+comment.text" color="primary" mat-icon-button>
       <mat-icon>expand_more</mat-icon>
     </button>
     •
-    <button (click)="showReply = !showReply" [attr.aria-label]="'reply '+comment.text" color="accent" mat-icon-button>
+    <button (click)="showReply = !showReply" [attr.aria-label]="'reply '+comment.text"
+            [color]="showReply ? 'accent' : 'primary'" mat-icon-button>
       <mat-icon>reply</mat-icon>
     </button>
     •
-    <button *ngIf="canEdit" (click)="showEdit = !showEdit" [attr.aria-label]="'edit '+comment.text" color="accent"
+    <button *ngIf="canEdit" (click)="showEdit = !showEdit" [attr.aria-label]="'edit '+comment.text"
+            [color]="showEdit ? 'accent' : 'primary'"
             mat-icon-button>
       <mat-icon>edit</mat-icon>
     </button>
