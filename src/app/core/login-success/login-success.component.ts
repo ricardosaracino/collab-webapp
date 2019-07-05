@@ -17,9 +17,14 @@ export class LoginSuccessComponent {
               private readonly router: Router,
               private readonly route: ActivatedRoute) {
 
-    route.params.pipe(map(p => p.token)).subscribe(token => {
+    route.params.subscribe((p: { accessToken: string, refreshToken?: string }) => {
 
-      authService.setToken(token);
+
+      console.log(p.accessToken);
+      console.log(p.refreshToken);
+
+      authService.setAccessToken(p.accessToken);
+      authService.setRefreshToken(p.refreshToken);
 
       this.route.queryParams.pipe(map(p => p.redirect)).subscribe(redirect => {
 

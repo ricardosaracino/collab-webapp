@@ -9,7 +9,7 @@ import {TopicTableComponent} from './modules/topic-table/topic-table.component';
 import {TopicComponent} from './modules/topic/topic.component';
 
 const routes: Routes = [
-  {path: 'login/success/:token', component: LoginSuccessComponent},
+  {path: 'login/success/:accessToken/:refreshToken', component: LoginSuccessComponent},
   {path: 'login/failure', component: LoginFailureComponent},
   {path: 'login', component: LoginComponent},
 

@@ -12,7 +12,7 @@ import {AuthService} from './core/auth.service';
 import {LoginFailureComponent} from './core/login-failure/login-failure.component';
 import {LoginSuccessComponent} from './core/login-success/login-success.component';
 import {LoginComponent} from './core/login/login.component';
-import {TokenInterceptor} from './core/token.interceptor';
+import {TokenInterceptor} from './core/token-interceptor.service';
 import {TopBarComponent} from './core/top-bar/top-bar.component';
 import {MaterialModule} from './material.modules';
 import {CommentComponent} from './modules/comment/comment.component';

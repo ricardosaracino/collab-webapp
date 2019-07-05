@@ -13,19 +13,30 @@ export class AuthService {
     this.isAuthenticated();
   }
 
-  public setToken(token: string): void {
-    localStorage.setItem('token', token);
-
+  public setAccessToken(token: string): void {
+    localStorage.setItem('access-token', token);
     this.isAuthenticated();
   }
 
-  public getToken(): string {
-    return localStorage.getItem('token');
+  public getAccessToken(): string {
+    return localStorage.getItem('access-token');
+  }
+
+  public setRefreshToken(token: string): void {
+    localStorage.setItem('refresh-token', token);
+  }
+
+  public getRefreshToken(): string {
+    return localStorage.getItem('refresh-token');
   }
 
   public logout(): void {
+
+    // todo delete refresh token on server
+
     this.user = null;
-    localStorage.removeItem('token');
+    localStorage.removeItem('access-token');
+    localStorage.removeItem('refresh-token');
     this.router.navigate(['login']);
   }
 
@@ -38,7 +49,7 @@ export class AuthService {
 
     this.user = null;
 
-    const token = this.getToken();
+    const token = this.getAccessToken();
 
     console.log('isAuthenticated', token);
 
@@ -53,7 +64,7 @@ export class AuthService {
 
           this.user = null;
 
-          localStorage.removeItem('token');
+          localStorage.removeItem('access-token');
 
           return false;
         }
