@@ -23,7 +23,7 @@ export class LoginSuccessComponent {
       console.log(p.accessToken);
       console.log(p.refreshToken);
 
-      authService.setAccessToken(p.accessToken);
+      authService.setAuthToken(p.accessToken);
       authService.setRefreshToken(p.refreshToken);
 
       this.route.queryParams.pipe(map(p => p.redirect)).subscribe(redirect => {

@@ -18,7 +18,7 @@ const routes: Routes = [
   {path: 'topics', component: TopicFeedComponent, canActivate: [AuthGuard]},
   {path: 'topic/:id/comments', component: TopicCommentsComponent, canActivate: [AuthGuard]},
 
-  {path: '**', redirectTo: ''},
+  {path: '**', redirectTo: 'topics'},
 ];
 
 @NgModule({

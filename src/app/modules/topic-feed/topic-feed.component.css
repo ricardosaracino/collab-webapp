@@ -13,7 +13,6 @@
 }
 
 .card-content {
-  height: 200px;
   max-height: 200px;
   padding-right: 5px;
   overflow-y: auto;
