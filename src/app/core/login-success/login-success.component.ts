@@ -19,10 +19,6 @@ export class LoginSuccessComponent {
 
     route.params.subscribe((p: { accessToken: string, refreshToken?: string }) => {
 
-
-      console.log(p.accessToken);
-      console.log(p.refreshToken);
-
       authService.setAuthToken(p.accessToken);
       authService.setRefreshToken(p.refreshToken);
 

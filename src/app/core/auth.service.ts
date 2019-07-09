@@ -55,15 +55,10 @@ export class AuthService {
 
     const authToken = this.getAuthToken();
 
-    //console.log('isAuthenticated auth-token', authToken);
-    // console.log('isAuthenticated refresh-token', this.getRefreshToken());
-
     if (authToken) {
 
       try {
         const decodedToken = decode(authToken);
-
-        console.log('isAuthenticated', decodedToken);
 
         if (Date.now() > decodedToken.exp * 1000) {
 
@@ -87,6 +82,9 @@ export class AuthService {
     return false;
   }
 
+  /**
+   * Redirects to login
+   */
   public logout(): boolean {
 
     // todo delete refresh token on server
@@ -99,18 +97,11 @@ export class AuthService {
     return true;
   }
 
-
   public refreshToken(): BehaviorSubject<boolean> {
-
-
-    console.log('AuthService refreshToken', this.isRefreshingToken);
-
 
     const refreshToken = this.getRefreshToken();
 
     if (!this.isRefreshingToken && refreshToken) {
-
-      console.log('AuthService refreshToken refreshing token');
 
       this.isRefreshingToken = true;
 
@@ -122,16 +113,12 @@ export class AuthService {
         .pipe(
           map((resp: { authToken: string }) => {
 
-            console.log('AuthService refreshToken set authToken', resp);
-
             this.setAuthToken(resp.authToken);
 
             return true;
           }),
           tap((success: boolean) => {
             if (success) {
-
-              console.log('AuthService refreshToken token refreshed');
 
               this.tokenSubject.next(success);
 

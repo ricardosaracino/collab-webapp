@@ -20,7 +20,13 @@ export class TokenInterceptor implements HttpInterceptor {
 
   public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    console.info(`Request to ${request.url}`);
+    console.info(`TokenInterceptor Request to ${request.url}`);
+
+    if (request.url.includes('/auth/refresh')) {
+      return next.handle(request);
+    }
+
+    console.info(`TokenInterceptor Adding request token to ${request.url}`);
 
     return next.handle(this.addTokenToRequest(request)).pipe(tap((event: HttpEvent<any>) => {
 
@@ -32,8 +38,6 @@ export class TokenInterceptor implements HttpInterceptor {
       }),
 
       catchError((error: any) => {
-
-        console.log('TokenInterceptor catch error', error);
 
         if (error instanceof HttpErrorResponse) {
 
@@ -69,9 +73,6 @@ export class TokenInterceptor implements HttpInterceptor {
       filter(success => success === true),
       take(1),
       switchMap(() => {
-
-        console.log('TokenInterceptor handleUnauthorized refresh callback');
-
         return next.handle(this.addTokenToRequest(request));
       }),
     );

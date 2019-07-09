@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {CanActivate, Router} from '@angular/router';
-import {filter, take, tap} from 'rxjs/operators';
 import {AuthService} from './auth.service';
 
 @Injectable()
@@ -11,29 +10,18 @@ export class AuthGuard implements CanActivate {
 
   canActivate(): boolean {
 
-    console.log('AuthGuard canActivate');
-
     if (!this.authService.isAuthenticated()) {
 
-      console.log('AuthGuard canActivate NOT authed');
+      if (!this.authService.hasRefreshToken()) {
 
-      if (this.authService.hasRefreshToken()) {
+        this.router.navigate(['login']);
 
-        console.log('AuthGuard canActivate HAS refresh');
-
-        this.authService.refreshToken().pipe(
-          filter(success => success === true),
-          take(1),
-          tap(() => {
-
-            console.log('AuthGuard canActivate FAILED (redirecting)');
-
-          }),
-        );
+      } else {
+        // this will logout and redirect
+        this.authService.refreshToken();
 
         return true;
       }
-
 
       return false;
     }
